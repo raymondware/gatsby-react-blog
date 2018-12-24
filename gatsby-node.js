@@ -23,7 +23,7 @@ const createTagPages = (createPage, posts) => {
 
   createPage({
     path: '/tags',
-    component: AllTagsIndexTemplate,
+    component: allTagsIndexTemplate,
     context: {
       tags: tags.sort()
     }
@@ -34,7 +34,7 @@ const createTagPages = (createPage, posts) => {
 
     createPage({
       path: `/tags/${tagname}`,
-      component: SingleTagIndexTemplate,
+      component: singleTagIndexTemplate,
       context: {
         posts,
         tagName
