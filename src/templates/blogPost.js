@@ -16,6 +16,9 @@ const Template = ({data, pageContext}) => {
           fontFamily: 'avenir'
         }}
       />
+
+      {prev && <Link to={prev.frontmatter.path}>Previou</Link>}
+      {next && <Link to={next.frontmatter.path}>Next</Link>}
     </div>
   )
 }
