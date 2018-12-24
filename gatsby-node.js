@@ -27,6 +27,19 @@ const createTagPages = (createPage, posts) => {
       tags: tags.sort()
     }
   })
+
+  tags.forEach(tagName => {
+    const posts = postsbyTag[tagName]
+
+    createPage({
+      path: `/tags/${tagname}`,
+      component: singleTagIndexTemplate,
+      context: {
+        posts,
+        tagName
+      }
+    })
+  })
 }
 
 exports.createPages = (({graphql, actions}) => {
