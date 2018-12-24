@@ -23,7 +23,7 @@ const createTagPages = (createPage, posts) => {
 
   createPage({
     path: '/tags',
-    compnent: AllTagsIndexTemplate,
+    component: AllTagsIndexTemplate,
     context: {
       tags: tags.sort()
     }
