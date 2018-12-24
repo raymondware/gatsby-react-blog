@@ -1,21 +1,52 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from "react"
+import { graphql, Link } from 'gatsby'
+import Header from '../components/Header'
 
-import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
-
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={['gatsby', 'application', 'react']} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
-      <Image />
+const Layout = ({data}) => {
+  const { edges } = data.allMarkdownRemark
+  return (
+    <div>
+      <Header />
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        fontFamily: 'avenir'
+      }}>
+        {edges.map(edge => {
+          const {frontmatter} = edge.node
+          return (
+            <div
+              key={frontmatter.path}
+              style={{marginBottom: '1rem'}}
+            >
+              <Link to={frontmatter.path}>
+                {frontmatter.title}
+              </Link>
+            </div>
+          )
+        })}
+      </div>
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+  )
+}
 
-export default IndexPage
+export const query = graphql`
+  query HomepageQuery {
+    allMarkdownRemark(
+      sort: {order: DESC, fields: [frontmatter___date]}
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            path
+            date
+          }
+        }
+      }
+    } 
+  }
+`
+
+export default Layout 
