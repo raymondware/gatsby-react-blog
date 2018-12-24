@@ -17,7 +17,7 @@ const Template = ({data, pageContext}) => {
         }}
       />
 
-      {prev && <Link to={prev.frontmatter.path}>Previou</Link>}
+      {prev && <Link to={prev.frontmatter.path}>Previous</Link>}
       {next && <Link to={next.frontmatter.path}>Next</Link>}
     </div>
   )
